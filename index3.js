@@ -43,6 +43,8 @@ app.post('/webhook', botsdk.middleware(config), (req, res) => {
             }).then((completion) => {
                 history[event.source.userId].push(completion.data.choices[0].message)
                 client.replyMessage(event.replyToken, { type: 'text', text: completion.data.choices[0].message.content })
+            }).catch(e=>{
+                console.log("error", e)
             })
         }
     })
